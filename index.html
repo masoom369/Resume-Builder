@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Builder</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <header>
+        <h1 class="text-4xl"><i class="fas fa-file-alt"></i> Resume Builder</h1>
+    </header>
+
+    <main class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <center>
+                    <h2 class="text-3xl mb-3"><i class="fas fa-edit"></i> Create Your Resume</h2>
+                </center>
+                <form id="resumeForm" class="resume-builder bg-light">
+                    <!-- Form Fields -->
+                    <div class="mb-3">
+                        <label for="nameInput" class="form-label"><i class="fas fa-user"></i> Name</label>
+                        <input type="text" id="nameInput" class="form-control" required placeholder="Enter your name" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailInput" class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="emailInput" class="form-control" required
+                            placeholder="Enter your email" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="phoneInput" class="form-label"><i class="fas fa-phone"></i> Phone</label>
+                        <input type="tel" id="phoneInput" class="form-control" required
+                            placeholder="Enter your phone number" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="linkedinInput" class="form-label"><i class="fab fa-linkedin"></i> LinkedIn</label>
+                        <input type="url" id="linkedinInput" class="form-control"
+                            placeholder="Enter your LinkedIn profile URL" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="addressInput" class="form-label"><i class="fas fa-map-marker-alt"></i>
+                            Address</label>
+                        <input type="text" id="addressInput" class="form-control" placeholder="Enter your address" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="summaryInput" class="form-label"><i class="fas fa-align-left"></i> Summary</label>
+                        <textarea id="summaryInput" class="form-control" rows="3" required
+                            placeholder="Enter a brief summary about yourself"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="educationInput" class="form-label"><i class="fas fa-graduation-cap"></i>
+                            Education</label>
+                        <textarea id="educationInput" class="form-control" rows="3" required
+                            placeholder="Enter your educational background"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="skillsInput" class="form-label"><i class="fas fa-tools"></i> Skills</label>
+                        <textarea id="skillsInput" class="form-control" rows="3" required
+                            placeholder="Enter your skills"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="experiencesInput" class="form-label"><i class="fas fa-briefcase"></i>
+                            Experiences</label>
+                        <textarea id="experiencesInput" class="form-control" rows="3" required
+                            placeholder="Enter your work experiences"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pic" class="form-label"><i class="fas fa-camera"></i> Profile Picture</label>
+                        <input type="file" class="form-control" id="pic" name="pic" accept="image/*" />
+                        <img id="imagePreview" src="" alt="Image Preview"
+                            style="display:none; width: 100px; height: 100px; object-fit: cover; margin-top: 10px;" />
+                    </div>
+                    <button type="submit" class="btn btn-custom" onclick="updatePreview()"><i class="fas fa-eye"></i>
+                        Preview</button>
+                </form>
+            </div>
+            <div class="col-md-6 mb-3">
+                <center>
+                    <h2 class="text-3xl mb-3"><i class="fas fa-eye"></i> Preview Resume</h2>
+                </center>
+                <div class="resume-review">
+                    <img id="resumePic" src="" alt="Profile Picture" />
+                    <p><strong><i class="fas fa-user"></i> Name:</strong> <span id="resumeName"></span></p>
+                    <p><strong><i class="fas fa-envelope"></i> Email:</strong> <span id="resumeEmail"></span></p>
+                    <p><strong><i class="fas fa-phone"></i> Phone:</strong> <span id="resumePhone"></span></p>
+                    <p><strong><i class="fab fa-linkedin"></i> LinkedIn:</strong> <span id="resumeLinkedIn"></span></p>
+                    <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> <span id="resumeAddress"></span>
+                    </p>
+                    <hr>
+                    <p><strong><i class="fas fa-align-left"></i> Summary:</strong> </p>
+                    <p><span id="resumeSummary"></span></p>
+                    <p><strong><i class="fas fa-graduation-cap"></i> Education:</strong></p>
+                    <p> <span id="resumeEducation"></span></p>
+                    <p><strong><i class="fas fa-tools"></i> Skills:</strong> </p>
+                    <button id="toggleButton" class="btn btn-custom mt-1">Show Skills</button>
+                    <p><span id="resumeSkills" style="display: none;"></span></p>
+                    <p><strong><i class="fas fa-briefcase"></i> Experiences:</strong> </p>
+                    <p><span id="resumeExperiences"></span></p>
+                    <button type="button" class="btn btn-custom mt-1" onclick="generatePDF()">
+                        <i class="fas fa-download"></i> Download PDF</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Resume Builder. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>

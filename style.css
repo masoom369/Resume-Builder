@@ -1,0 +1,77 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7f6;
+}
+
+textarea {
+  resize: none;
+}
+
+header,
+footer {
+  padding: 20px;
+  background: linear-gradient(90deg, #0056b3, #007bff);
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.resume-builder,
+.resume-review {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  background-color: #ffffff;
+}
+
+.resume-review p {
+  margin-bottom: 10px;
+}
+
+.btn-custom {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: #ffffff;
+  border: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-custom:hover {
+  background-color: #ffffff !important;
+  transform: scale(1.05);
+}
+
+.form-control::placeholder {
+  color: #6c757d;
+  opacity: 0.8;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+input[type="file"] {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+#resumePic {
+  max-width: 50%;
+  height: auto;
+}
